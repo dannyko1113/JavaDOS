@@ -1,0 +1,2 @@
+#Features (crucial)
+- md rd del dir cd edit exit
