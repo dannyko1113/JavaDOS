@@ -1,4 +1,4 @@
-package config;/*
+package configuration;/*
 bootconfig_loader
 reads the raw BOOTCONFIG text file and converts them into a hashmap
  */

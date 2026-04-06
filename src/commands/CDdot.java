@@ -1,17 +1,15 @@
 package commands;
 
 import virtualFileSystem.*;
-import java.util.*;
 
-public class ECHO implements cmd {
+public class CDdot implements cmd {
     private VFS vfs;
-    private String input;
 
-    public ECHO(VFS vfs) {
+    public CDdot(VFS vfs) {
         this.vfs = vfs;
     }
 
     public void execute(String[] args) {
-
+        vfs.cd(".");
     }
 }

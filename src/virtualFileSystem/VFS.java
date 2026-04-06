@@ -1,4 +1,5 @@
-package VFSclass;/*
+package virtualFileSystem;
+/*
 VirtualFS
 
  */
@@ -8,33 +9,54 @@ public class VFS
 {
     private final pathResolver resolver;
     private final shellState state;
+    private final Path root;
 
     public VFS(Path root)
     {
+        this.root = root;
         this.resolver = new pathResolver(root);
         this.state = new shellState(root);
     }
 
-    public void cd(String path)
+    public void cd(String input)
     {
-        Path newPath = resolver.resolve(state.getCurrentDir(), path);
-        // define new path
+        Path newPath = resolver.resolve(state.getCurrentDir(), input);
+
         if (!Files.exists(newPath))
         {
-            throw new RuntimeException("Invalid Directory.");
+            System.out.println("No such directory.");
+            return;
         }
-        if (Files.isDirectory(newPath)) // check if it is an existing path
+
+        if (!Files.isDirectory(newPath))
         {
-            state.setCurrentDir(newPath);
+            System.out.println("Not a directory.");
+            return;
+        }
+
+        // Detect drive switch
+        if (input.matches("^[J-Vj-v]:.*"))
+        {
+            String drive = input.substring(0, 1).toUpperCase();
+            state.setCurrentDrive(drive, newPath);
         }
         else
         {
-            throw new RuntimeException("Not a Directory.");
+            state.setCurrentDir(newPath);
         }
     }
 
     public Path getcd()
     {
         return state.getCurrentDir();
+    }
+    public shellState getState()
+    {
+        return state;
+    }
+
+    public Path getRoot()
+    {
+        return root; // or rootFinal if exposed
     }
 }

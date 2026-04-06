@@ -1,4 +1,4 @@
-package config;/*
+package configuration;/*
 bootconfig
 brings the hashmap from loader and converts it into a path format
  */
