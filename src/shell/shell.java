@@ -21,12 +21,15 @@ public class shell
         while (running)
         {
             shellState state = registry.getVfs().getState();
-            Path root = registry.getVfs().getRoot();
 
-            String drive = state.getCurrentDrive();
-            String relativePath = state.getRelativePath(root);
+            if (state.isEchoEnabled())
+            {
+                String drive = state.getCurrentDrive();
+                Path root = registry.getVfs().getRoot();
+                String relativePath = state.getRelativePath(root);
 
-            System.out.print(drive + ":" + relativePath + ">");
+                System.out.print(drive + ":" + relativePath + ">");
+            }
 
 
             String input = sc.nextLine();

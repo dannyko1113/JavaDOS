@@ -49,4 +49,15 @@ public class shellState
 
         return "/" + relative.toString().replace("\\", "/");
     }
+    private boolean echoEnabled = true;
+
+    public boolean isEchoEnabled()
+    {
+        return echoEnabled;
+    }
+
+    public void setEchoEnabled(boolean enabled)
+    {
+        this.echoEnabled = enabled;
+    }
 }
